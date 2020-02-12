@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 12, 2020 at 06:04 AM
+-- Generation Time: Feb 12, 2020 at 08:54 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.14
 
@@ -127,7 +127,8 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (2, 1, 2),
 (3, 2, 2),
 (4, 1, 3),
-(5, 1, 5);
+(5, 1, 5),
+(6, 1, 7);
 
 -- --------------------------------------------------------
 
@@ -149,7 +150,8 @@ INSERT INTO `user_menu` (`id`, `menu`, `icon`) VALUES
 (1, 'administrator', 'fas fa-fw fa-user-cog'),
 (2, 'user', 'fas fas-fw fa-user-alt'),
 (3, 'menu', 'fas fa-fw fa-box'),
-(5, 'Datamaster', 'fas fa-fw fa-folder');
+(5, 'Datamaster', 'fas fa-fw fa-folder'),
+(7, 'Dashboard', 'fas fa-fw fa-columns');
 
 -- --------------------------------------------------------
 
@@ -313,13 +315,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user_menu`
 --
 ALTER TABLE `user_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user_role`
