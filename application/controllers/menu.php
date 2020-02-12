@@ -37,11 +37,11 @@ class menu extends CI_Controller
         //harus membuat model karena membutuhkan menu dan tampil di submenu 
         $this->load->model('menu_model', 'menu'); // aliasnya menu
         $data['submenu'] = $this->menu->getsubmenu(); //menu disini artinya model
+        $data['jummenu'] = $this->menu->jummenu(); //menghitung jumlah menu 
         $data['menu'] = $this->db->get('user_menu')->result_array();
         $this->form_validation->set_rules('title', 'title', 'required');
         $this->form_validation->set_rules('menu_id', 'menu', 'required');
         $this->form_validation->set_rules('url', 'url', 'required');
-        $this->form_validation->set_rules('icon', 'icon', 'required');
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -54,7 +54,6 @@ class menu extends CI_Controller
                     'title' => $this->input->post('title'),
                     'menu_id' => $this->input->post('menu_id'),
                     'url' => $this->input->post('url'),
-                    'icon' => $this->input->post('icon'),
                     'is_active' => $this->input->post('is_active')
                 ];
             $this->db->insert('user_sub_menu', $data);

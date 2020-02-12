@@ -19,7 +19,6 @@
                         <th scope="col">Title</th>
                         <th scope="col">Menu</th>
                         <th scope="col">Url</th>
-                        <th scope="col">Icon</th>
                         <th scope="col">Active</th>
                         <th scope="col">Handle</th>
                     </tr>
@@ -32,7 +31,6 @@
                             <td><?= $mn['title']; ?></td>
                             <td><?= $mn['menu']; ?></td>
                             <td><?= $mn['url']; ?></td>
-                            <td><?= $mn['icon']; ?></td>
                             <td><?= $mn['is_active']; ?></td>
                             <td>
                                 <a href="" class="badge badge-pill badge-success">edit</a>

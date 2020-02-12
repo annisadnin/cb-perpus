@@ -11,6 +11,12 @@
 
     <!-- Divider -->
 
+    <!-- <li class="nav-item">
+        <a class="nav-link mt-3" href="">
+            <i class="fas fa-fw fa-columns"></i>
+            <span>Dashboard</span></a>
+    </li> -->
+
     <hr class="sidebar-divider">
     <?php
     $role_id = $this->session->userdata('role_id');
@@ -35,30 +41,35 @@
             <?php } else { ?>
             <li class="nav-item ">
             <?php } ?>
+            <?php if ($jummenu == 1) { ?>
+                <span class="nav-link mt-3" href="<?= base_url(''); ?>">
+                    <i class="fas fa-fw fa-columns"></i>
+                    <span><?= $m['menu']; ?></span>
+                <?php } else { ?>
 
-            <a class="nav-link collapsed" data-toggle="collapse" onclick="SetActiveDiv(this);" data-target="#menu-<?= $m['id']; ?>" aria-expanded="true" aria-controls="collapseTwo">
-                <i class="<?= $m['icon']; ?>"></i>
-                <span><?= $m['menu']; ?></span>
-            </a>
-            <div id="menu-<?= $m['id']; ?>" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <?php foreach ($submenu as $sm) : ?>
-                        <a class="collapse-item" href="<?= base_url($sm['url']); ?>">
-                            <span><?= $sm['title']; ?></span></a>
-                    <?php
-                    endforeach;
-                    ?>
-                </div>
-            </div>
+                    <a class="nav-link collapsed" data-toggle="collapse" onclick="SetActiveDiv(this);" data-target="#menu-<?= $m['id']; ?>" aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="<?= $m['icon']; ?>"></i>
+                        <span><?= $m['menu']; ?></span>
+                    </a>
+                    <div id="menu-<?= $m['id']; ?>" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <?php foreach ($submenu as $sm) : ?>
+                                <a class="collapse-item" href="<?= base_url($sm['url']); ?>">
+                                    <span><?= $sm['title']; ?></span></a>
+                            <?php
+                            endforeach;
+                            ?>
+                        </div>
+                    </div>
             </li>
             <hr class="sidebar-divider">
+        <?php } ?>
+    <?php endforeach; ?>
 
-        <?php endforeach; ?>
-
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
 
 </ul>
 <!-- End of Sidebar -->
