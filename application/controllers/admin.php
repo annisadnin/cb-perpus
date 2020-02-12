@@ -13,6 +13,7 @@ class admin extends CI_Controller
         // ambil data session
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         // if($this->form_validation->run()== false){
+        $data['name'] = 'administrasi';
         $data['title'] = 'Dashboard';
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

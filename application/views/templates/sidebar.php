@@ -6,15 +6,15 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-book-open"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">CB-PERPUS</div>
+        <div class="sidebar-brand-text mx-3">PENJUALAN</div>
     </a>
 
     <!-- Divider -->
-    <hr class="sidebar-divider">
 
+    <hr class="sidebar-divider">
     <?php
     $role_id = $this->session->userdata('role_id');
-    $querymenu = "SELECT user_menu.id, user_menu.menu FROM user_menu JOIN user_access_menu ON user_menu.id = user_access_menu.menu_id
+    $querymenu = "SELECT user_menu.id, user_menu.menu, user_menu.icon FROM user_menu JOIN user_access_menu ON user_menu.id = user_access_menu.menu_id
     WHERE user_access_menu.role_id = $role_id ORDER BY user_access_menu.menu_id ASC ";
     $menu = $this->db->query($querymenu)->result_array();
     ?>
@@ -22,9 +22,6 @@
 
     <!-- LOAPING  -->
     <?php foreach ($menu as $m) : ?>
-        <div class="sidebar-heading">
-            <?= $m['menu']; ?>
-        </div>
         <?php
         $menuid = $m['id'];
         $qsubmenu = " SELECT * 
@@ -33,24 +30,28 @@
         AND is_active = 1";
         $submenu = $this->db->query($qsubmenu)->result_array();
         ?>
+        <?php if ($title == $m['menu']) { ?>
+            <li class="nav-item active">
+            <?php } else { ?>
+            <li class="nav-item ">
+            <?php } ?>
 
-        <?php foreach ($submenu as $sm) : ?>
-            <?php
-            if ($title == $sm['title']) :
-            ?>
-                <li class="nav-item active">
-                <?php
-            else :  ?>
-                <li class="nav-item">
-                <?php endif; ?>
-                <a class="nav-link pb-0" href="<?= base_url($sm['url']); ?>">
-                    <i class="<?= $sm['icon']; ?>"></i>
-                    <span><?= $sm['title']; ?></span></a>
-                </li>
-            <?php
-        endforeach;
-            ?>
-            <hr class="sidebar-divider mt-3">
+            <a class="nav-link collapsed" data-toggle="collapse" onclick="SetActiveDiv(this);" data-target="#menu-<?= $m['id']; ?>" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="<?= $m['icon']; ?>"></i>
+                <span><?= $m['menu']; ?></span>
+            </a>
+            <div id="menu-<?= $m['id']; ?>" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <?php foreach ($submenu as $sm) : ?>
+                        <a class="collapse-item" href="<?= base_url($sm['url']); ?>">
+                            <span><?= $sm['title']; ?></span></a>
+                    <?php
+                    endforeach;
+                    ?>
+                </div>
+            </div>
+            </li>
+            <hr class="sidebar-divider">
 
         <?php endforeach; ?>
 

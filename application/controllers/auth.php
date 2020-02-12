@@ -100,26 +100,15 @@ class auth extends CI_Controller
                 'image' => 'default.jpg',
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                 'role_id' => 2,
-                'is_active' => 0,
+                'is_active' => 1,
                 'date_created' => time()
             ];
-            //siapkan token
-            $length = 32;
-            $token = bin2hex(openssl_random_pseudo_bytes($length, $crypto_strong));
-            //openssl_random_pseudo_bytes($length, &$crypto_strong)
-            $user_token = [
-                'email' => $email,
-                'token' => $token,
-                'date_created' => time()
-            ];
-
 
             $this->db->insert('user', $data);
-            $this->db->insert('user_token', $user_token);
             // kirim email
-            $this->_sendEmail($token, 'verify'); // ngasih tau digunakan untuk apa , ini buat verify
+
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-            Congratulation, your account has been created ! please actived.
+            Congratulation, your account has been created !
           </div>');
             redirect('auth');
         }
